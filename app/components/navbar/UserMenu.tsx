@@ -4,11 +4,15 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { useCallback, useState } from "react";
 import { MenuItem } from "./MenuItem";
+import { useDispatch } from "react-redux";
+import { openModal } from "@/app/redux/features/RegisterModalSlice";
 
 interface UserMenuProps {}
 
 export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const toogleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -37,7 +41,12 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
           <div className="flec flex-col cursor-pointer">
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sign up" />
+              <MenuItem
+                onClick={() => {
+                  dispatch(openModal());
+                }}
+                label="Sign up"
+              />
             </>
           </div>
         </div>
